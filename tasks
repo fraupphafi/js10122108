@@ -1,0 +1,1 @@
+1) Напишите функцию transfor(str)  =>  'aabbbaccaa' => '2a3b1a2c2a'
