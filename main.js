@@ -1,97 +1,111 @@
-// let width =  Math.round(3/4)
-// let a = 1;
-//
-// if(a===1) {
-//     console.log(a);
-// }
-//
-// // for(let i=1; i<3; i++){
-// //
-// // }
-// //
-// // while(a>1){
-// //
-// // }
+"use strict";
 
-// let a = Math.round(3/4);
-// console.log(a);
-//
-// debugger;
-// a = a + 2;
-//
-// let b = 1;
-// console.log(b);
-//
-// 'use strict';
-// mistypedVaraible = 17;
+function transfor(str) {
+    console.log(str);
+    let lastChar;
+    let curLetter; 
+    let lastCharCount
+    let result = '1' + str[0]; // сразу берем первую букву в количестве 1
 
+    for (let i = 1; i < str.length; i++) { // последовательно проверям строку
 
-/*
-number,string, boolean,null, undefined, symbol, bigint
- */
+        curLetter = str[i];
+        lastChar = result[result.length - 1];
 
-// let decimal = 5.5;
-// let hex = 0xf00d;
-// let octal = 0o744;
-// let binary = 0b1010;
-// let myInfinity = Infinity;
-// let nan = NaN;
-// console.log(typeof decimal);
-// console.log(typeof hex);
-// console.log(typeof octal);
-// console.log(typeof binary);
-// console.log(typeof myInfinity);
-// console.log(typeof nan);
-// // a.toFixed() -> Number(1).
+        if (curLetter === lastChar) {  
+            lastCharCount = +result[result.length - 2];
+            lastCharCount++;
+            result = result.slice(0, result.length - 2) + lastCharCount + lastChar;            
+        } else {            
+            result = result + 1 + curLetter;
+        }       
+    }
+    console.log(result);
+    return result;    
+}
 
-// null, undefined, NaN, '', 0
-// let b = 0;
-// let a = [1,2];
-// if(b === 0) {
-//
-// }
-//
-// let b = 5 && true
-// let  c =   4 || 6 && true
+transfor('aabbbaccaa');
+transfor('qqwweerrttyyyyy');
 
+// Задания из учебника
 
-// let a = 1 + 4;
-//
-// let b = 'my';
-// let c = b.concat('?', '!');
-// console.log();
+// (function(){
+//     let a = +prompt('первое число', '');
+//     let b = +prompt('второе число', '');
+//     let result =  (a + b < 4) ? 'Мало' : 'Много';
+//     alert(result);
+// })();
 
-// function calculate(cb = () => {
-// }) {
-//     //
-//     cb();
-// }
+// 2.13 Логические операторы 
 
-// calculate();
+// (function(){
+//     let age = +prompt('первое ваш возраст', '');
+//     // if (!(age >= 14 && age <= 90)) {
+//     //     alert('Недопустимо');
+//     // } else {
+//     //     alert('Подходит');
+//     // }
 
-// let account = {
-//     name: 'Igor',
-//     age: null
+//     if (age < 14 || age > 90) {
+//         alert('Недопустимо');
+//     } else {
+//         alert('Подходит');
+//     }
+// })();
+
+// 2.15 Циклы while, for
+
+// (function(){ // Вывести четные числа
+//    for (let i = 1; i <= 20; i++) {
+//        if (i % 2 == 0) {
+//             alert(i);
+//        }
+//    }   
+// })();
+
+// (function(){ // Переписать for на while
+//     let i = 0;
+//     while (i < 3) {
+//         alert( "номер " + i + "!" );
+//         i++;
+//     } 
+// })();
+
+// (function(){ // Запрашивать до верного значения
+//     let currentValue;   
+//     do {
+//         currentValue = +prompt('Введите число больше 100', 0);       
+//     } while (currentValue < 100 && currentValue != 0)
+// })();
+
+// function showSimpleNumbers(){ // ****Вывести натуральные числа в диапазоне***
+
+//     let x = 2;
+//     let k = 20;
+
+//     for (let n = x; n <= k; n++) { // перебор диапазона чисел
+
+//         for (let i = 2; i <= n; i++) { // проверка каждого
+//             if (n % i == 0) {
+//                 if (i == n) {
+//                     alert(n + ' простое')
+//                 } else {                    
+//                     break;
+//                 }        
+//             }
+//         }
+//     } 
 // };
-// console.log(account.age);
-// console.log(account.info);
-// let a = {
-//     a: 1,
-// };
-// let c = {
-//     a: 1,
-// };
-// let b = a;
-// // let key = 'a';
-// b.a = 2;
-//
-// console.log(a === b);
-// console.log(c === b);
 
-// let a = 1;
-// let b = a + 2;
-//
-// a = 5;
-let a = {b: {a:1}};
-let b = {b: {a:1}};
-console.log(a.b.a === b.b.a);
+//4.3 Строки (вариант с усечением первых символов не чисел)
+// function extractCurrencyValue(str) {  
+//     if (!(isNaN(str[0]))) {
+//         return +str;        
+//     } else {
+//         str = str.slice(1);        
+//         extractCurrencyValue(str);
+//     }
+// }
+
+// extractCurrencyValue('$$$$333');
+// extractCurrencyValue('22120');
