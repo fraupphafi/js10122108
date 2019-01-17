@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- <script src="https://ru.js.cx/test/libs.js"></script> -->
+  <!-- <script src="test.js"></script> -->
+</head>
+<body>
+
+  <script>
+
+    // ...Ваш код...
+
+    // function makeBuffer() {
+    //   let str = '';
+    //   return {
+    //     set: function (value) {
+    //       str += `${value}`;
+    //     },
+    //     get: function() {
+    //       console.log(str);
+    //       return str;
+    //     }
+    //   }
+    // }
+
+    // let buffer = makeBuffer();
+    // buffer.set('привет');
+    // buffer.set(' мир');
+    // buffer.get();
+
+    function makeBuffer() {
+      let str = 'пиу ';
+
+      function buffer(value) {
+        if (value || value === 0) {
+            str += `${value}`;
+            return;          
+        }
+        console.log(str);
+        return str;        
+      }
+      buffer.clear = function() {
+          str = '';
+      }
+
+      return buffer;
+    }
+
+    let buffer = makeBuffer();
+
+    buffer('привет');
+    buffer.clear();
+    buffer(' мир');
+    buffer();
+
+    let buffer2 = makeBuffer();
+    buffer2(0);
+    buffer2(0);
+    buffer2(0);
+    buffer2();
+  
+
+  </script>
+
+</body>
+</html>

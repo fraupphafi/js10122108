@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>tooltip</title>
+
+    <style>
+        body {
+            height: 2000px;
+            /* подсказка должна работать независимо от прокрутки */
+        }
+        /* ваши стили */
+
+        .tooltip {
+            position: fixed;
+            background-color: #eee;
+            border-radius: 4px;
+            box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);
+            padding: 20px 10px;
+            text-align: center;
+        }
+    </style>
+
+
+</head>
+<body>
+
+    <p>ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя</p>
+    <p>ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя</p>
+
+    <!-- <div class="tooltip">подсказка длиннее, чем элемент</div> -->
+    
+    <button data-tooltip="подсказка длиннее, чем элемент">Короткая кнопка</button>
+    <button data-tooltip="HTML<br>подсказка">Ещё кнопка</button>
+    
+    <p>Прокрутите страницу, чтобы ссылки были вверху и проверьте, правильно ли показываются подсказки.</p>
+    
+    
+    <script>
+        // ваш код
+        let body = document.body;
+        console.log(body);
+    
+        body.addEventListener('mouseover', showTooltip);
+        body.addEventListener('mouseout', hideTooltip);
+    
+        function showTooltip(event) {
+          let target = event.target;
+          let button = target.getAttribute('data-tooltip');
+    
+          if(!button) return;
+
+          let tooltip = document.createElement('div');
+          tooltip.classList.add('tooltip');
+          tooltip.innerHTML = button;
+
+          target.insertAdjacentElement('afterend', tooltip);
+          console.log(tooltip);    
+          console.log(target);
+
+          let coords = target.getBoundingClientRect();
+          console.log(coords);
+
+            let left = coords.left + (target.offsetWidth - tooltip.offsetWidth) / 2;
+            if (left < 0) left = 0;
+
+            let top = coords.top - tooltip.offsetHeight - 5;
+            if (top < 0) {
+                top = coords.top + target.offsetHeight + 5;
+            }
+            tooltip.style.left = left + 'px';
+            tooltip.style.top = top + 'px';
+        }
+
+
+        function hideTooltip(event) {
+            let target = event.target;
+            let button = target.getAttribute('data-tooltip');
+    
+            if(!button) return;
+
+            let tooltip = target.nextElementSibling;
+            tooltip.remove();
+        }
+    
+    </script>
+    
+</body>
+</html>
